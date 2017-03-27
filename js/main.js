@@ -71,22 +71,22 @@ var mat = new THREE.MeshLambertMaterial({color: 0x9e8784});
 var cylinderMat = new THREE.MeshBasicMaterial({color: 0xa65c68});
 var cylinder1 = new THREE.Mesh(CylinderGeo1, cylinderMat);
 cylinder1.position.x = -40;
-cylinder1.position.y = 10;
+cylinder1.position.y = 30;
 
 var CylinderGeo2 = new THREE.CylinderGeometry(0.5,0.5,80);
 var cylinder2 = new THREE.Mesh(CylinderGeo1, cylinderMat);
 cylinder2.position.x = 140;
-cylinder2.position.y = -50;
+cylinder2.position.y = -30;
 
 var CylinderGeo3 = new THREE.CylinderGeometry(0.5,0.5,80);
 var cylinder3 = new THREE.Mesh(CylinderGeo3, cylinderMat);
 cylinder3.position.x = 320;
-cylinder3.position.y = -110;
+cylinder3.position.y = -90;
 
 var CylinderGeo4 = new THREE.CylinderGeometry(0.5,0.5,80);
 var cylinder4 = new THREE.Mesh(CylinderGeo4, cylinderMat);
 cylinder4.position.x = 500;
-cylinder4.position.y = -170;
+cylinder4.position.y = -150;
 
 var planeMaterial = new THREE.MeshLambertMaterial({color: 0x383a42});
 var planeGeo1 = new THREE.PlaneGeometry(80, 80);
@@ -94,7 +94,7 @@ var plane1 = new THREE.Mesh(planeGeo1, planeMaterial);
 plane1.rotation.x = -Math.PI * 4/12;
 plane1.rotation.z = Math.PI * 5/16;
 plane1.position.x = -40;
-plane1.position.y = -30;
+plane1.position.y = -10;
 plane1.receiveShadow = true;
 
 var planeGeo2 = new THREE.PlaneGeometry(80, 80);
@@ -102,7 +102,7 @@ var plane2 = new THREE.Mesh(planeGeo2, planeMaterial);
 plane2.rotation.x = -Math.PI * 4/12;
 plane2.rotation.z = Math.PI * 5/16;
 plane2.position.x = 140;
-plane2.position.y = -90;
+plane2.position.y = -70;
 plane2.receiveShadow = true;
 
 var planeGeo3 = new THREE.PlaneGeometry(80, 80);
@@ -110,7 +110,7 @@ var plane3 = new THREE.Mesh(planeGeo3, planeMaterial);
 plane3.rotation.x = -Math.PI * 4/12;
 plane3.rotation.z = Math.PI * 5/16;
 plane3.position.x = 320;
-plane3.position.y = -150;
+plane3.position.y = -130;
 plane3.receiveShadow = true;
 
 var planeGeo4 = new THREE.PlaneGeometry(80, 80);
@@ -118,7 +118,7 @@ var plane4 = new THREE.Mesh(planeGeo4, planeMaterial);
 plane4.rotation.x = -Math.PI * 4/12;
 plane4.rotation.z = Math.PI * 5/16;
 plane4.position.x = 500;
-plane4.position.y = -210;
+plane4.position.y = -190;
 plane4.receiveShadow = true;
 
 
@@ -129,25 +129,25 @@ circGeom.vertices.shift();
 circGeom.computeLineDistances();
 
 var circ1 = new THREE.Line( circGeom, dashMaterial);
-circ1.position.set(-35,70,0);
+circ1.position.set(-30,90,0);
 circ1.rotation.x = Math.PI/9;
 circ1.rotation.y = -Math.PI/7;
 circ1.scale.set(6,6,6);
 
 var circ2 = new THREE.Line( circGeom, dashMaterial);
-circ2.position.set(140,10,0);
+circ2.position.set(145,30,0);
 circ2.rotation.x = Math.PI/9;
 circ2.rotation.y = -Math.PI/7;
 circ2.scale.set(6,6,6);
 
 var circ3 = new THREE.Line( circGeom, dashMaterial);
-circ3.position.set(320,-50,0);
+circ3.position.set(325,-30,0);
 circ3.rotation.x = Math.PI/9;
 circ3.rotation.y = -Math.PI/7;
 circ3.scale.set(6,6,6);
 
 var circ4 = new THREE.Line( circGeom, dashMaterial);
-circ4.position.set(500,-110,0);
+circ4.position.set(505,-90,0);
 circ4.rotation.x = Math.PI/9;
 circ4.rotation.y = -Math.PI/7;
 circ4.scale.set(6,6,6);
@@ -417,6 +417,16 @@ function animate() {
 }
 
 function render(){
+	if (camera.position.x !== 0){
+		camera.position.x = 0
+	}
+	if (camera.position.y !== 0){
+		camera.position.y = 0
+	}
+
+	if (camera.position.z !== 380){
+		camera.position.z = 380
+	}
 	camera.lookAt( scene.position );
 	renderer.render( scene, camera );
 
@@ -431,11 +441,15 @@ function update(){
 	// if(pointLight1.position.x>230 || pointLight1.position.x<0){
 	// 	w = -w;
 	// }
-	if(mesh1.position.y - cylinder1.position.y < 100 && Math.abs(mesh1.position.x - cylinder1.position.x) < 100){
-		mesh1.material = new THREE.MeshLambertMaterial({color: 0x737f8e});
+	for (var i = 0; i < mesh.length; i++){
+	if(Math.abs(mesh[i].position.y - cylinder1.position.y) < 120 && Math.abs(mesh[i].position.x - cylinder1.position.x) < 60){
+		mesh[i].material = new THREE.MeshLambertMaterial({color: 0x737f8e});
 	}else{
-		mesh1.material = new THREE.MeshLambertMaterial({color: 0x9e8684});
+		mesh[i].material = new THREE.MeshLambertMaterial({color: 0x9e8684});
 	}
+}
+
+
 	// mesh.scale.set(slider1.value/80,slider1.value/80,slider1.value/80);
 	// multiGeo.mesh.scale.set(slider1.value/80,slider1.value/80,slider1.value/80);
 	// cylinder1.position.y = -50 - slider1.value/10;
