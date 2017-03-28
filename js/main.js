@@ -275,6 +275,8 @@ var synth = new Tone.MonoSynth({
 			}
 		}).toMaster();
 
+
+
 window.addEventListener( 'load', function(){
 	var loadingPage = document.getElementById("loadingPage");
 	loadingPage.style.display = "none";
@@ -367,7 +369,7 @@ container.appendChild( renderer.domElement );
 
 
 	var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
-		dragControls.addEventListener( 'dragstart', function ( event ) { controls.enabled = false; } );
+		dragControls.addEventListener( 'dragstart', function ( event ) { controls.enabled = true; } );
 		dragControls.addEventListener( 'dragend', function ( event ) { controls.enabled = true; } );
 
 	for (var i = 0; i < mesh.length; i ++){
