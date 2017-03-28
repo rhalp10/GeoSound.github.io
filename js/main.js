@@ -369,17 +369,17 @@ container.appendChild( renderer.domElement );
 
 
 	var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
-		dragControls.addEventListener( 'dragstart', function ( event ) { controls.enabled = true; } );
-		dragControls.addEventListener( 'dragend', function ( event ) { controls.enabled = true; } );
+		// dragControls.addEventListener( 'dragstart', function ( event ) { controls.enabled = false; } );
+		// dragControls.addEventListener( 'dragend', function ( event ) { controls.enabled = true; } );
 
 	for (var i = 0; i < mesh.length; i ++){
 		collidableMeshList.push(mesh[i]);
 	}
 
-	controls = new THREE.OrbitControls( camera, renderer.domElement );
-	controls.addEventListener( 'change', render );
-	controls.enableDamping = true;
-	controls.dampingFactor = 0.35;
+	// controls = new THREE.OrbitControls( camera, renderer.domElement );
+	// controls.addEventListener( 'change', render );
+	// controls.enableDamping = true;
+	// controls.dampingFactor = 0.35;
 
 
 	//window events
