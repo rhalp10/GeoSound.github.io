@@ -205,21 +205,18 @@ mesh3.receiveShadow = true;
 var mesh4 = new THREE.Mesh(new createMergedGeometry().geometry, mat);
 mesh4.position.x = -500;
 mesh4.position.y = -20;
-mesh4.position.z = -20;
 mesh4.castShadow = true;
 mesh4.receiveShadow = true;
 
 var mesh5 = new THREE.Mesh(new createMergedGeometry().geometry, mat);
 mesh5.position.x = -400;
 mesh5.position.y = -20;
-mesh5.position.z = -20;
 mesh5.castShadow = true;
 mesh5.receiveShadow = true;
 
 var mesh6 = new THREE.Mesh(new createMergedGeometry().geometry, mat);
 mesh6.position.x = -300;
 mesh6.position.y = -20;
-mesh6.position.z = -20;
 mesh6.castShadow = true;
 mesh6.receiveShadow = true;
 
@@ -295,7 +292,7 @@ function init() {
 
 	//camera
 	camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -500, 1000 );
-	camera.position.z = 380;
+	camera.position.z = 850;
 	// camera.position.x = 180;
 	// camera.position.y = 180;
 	// camera.position.y = 400;
@@ -336,21 +333,15 @@ function init() {
 	for (var i = 0; i < mesh.length; i ++){
 		scene.add(mesh[i]);
 	}
+	for (var i = 0; i < mesh.length; i ++){
+		objects.push(mesh[i]);
+	}
 	scene.add(plane1);
 	scene.add(plane2);
 	scene.add(plane3);
 	scene.add(plane4);
 	// scene.add(helper);
 	// scene.add(helper2);
-	objects.push( mesh1 );
-	objects.push( mesh2 );
-	objects.push( mesh3 );
-	objects.push( mesh4 );
-	objects.push( mesh5 );
-	objects.push( mesh6 );
-	objects.push( mesh7 );
-	objects.push( mesh8 );
-	objects.push( mesh9 );
 	objects.push( multiGeo1.mesh );
 	// scene.add(multiGeo1.mesh);
 
