@@ -21,8 +21,8 @@ speed.push(Math.random()/12, Math.random()/12,Math.random()/12,Math.random()/12,
 
 function setLights(){
 	SpotLight1 = new THREE.SpotLight( 'rgb(255,255,255)', 0.35 );
-	SpotLight1.position.set( 100,320,30 );
-	SpotLight1.target.position.set( 100,0,30);
+	SpotLight1.position.set( 100,240,30 );
+	SpotLight1.target.position.set( 100,-80,-30);
 	SpotLight1.castShadow = true;
 	helper = new THREE.CameraHelper( SpotLight1.shadow.camera );
 	SpotLight1.shadow.camera.near = 1;
@@ -35,8 +35,8 @@ function setLights(){
 	SpotLight1.shadow.mapSize.height = 2048;
 
 	SpotLight2 = new THREE.SpotLight( 'rgb(255,255,255)', 0.35 );
-	SpotLight2.position.set( 500,220,30 );
-	SpotLight2.target.position.set( 500,0,30);
+	SpotLight2.position.set( 420,200,30 );
+	SpotLight2.target.position.set( 420,-20,-30);
 	SpotLight2.castShadow = true;
 	helper2 = new THREE.CameraHelper( SpotLight2.shadow.camera );
 	SpotLight2.shadow.camera.near = 1;
@@ -55,7 +55,17 @@ function setLights(){
 	pointLight1 = new THREE.PointLight( 0xe1223d, 1.2, 100 );
 	pointLight1.position.set( 0, 40, 60 );
 
+	pointLight2 = new THREE.PointLight( 0xe1223d, 1.2, 100 );
+	pointLight2.position.set( 200, 50, 60 );
+
+	pointLight3 = new THREE.PointLight( 0xe1223d, 1.2, 100 );
+	pointLight3.position.set( 380, 0, 60 );
+
+	pointLight4 = new THREE.PointLight( 0xe1223d, 1.2, 100 );
+	pointLight4.position.set( 520, -60, 60 );
+
 	pointLightHelper = new THREE.PointLightHelper( pointLight1, 1 );
+	pointLightHelper2 = new THREE.PointLightHelper( pointLight4, 1 );
 }
 
 
@@ -164,9 +174,9 @@ function createMergedGeometry(){
 		this.geometry = new THREE.Geometry();
 		for (var i = 0; i < 5; i++) {
 		var cubeGeometry = new THREE.BoxGeometry(
-		70*Math.random(),
-		70*Math.random(),
-		70*Math.random());
+		65*Math.random(),
+	    65*Math.random(),
+		65*Math.random());
 		// var rotation = new THREE.Matrix4().makeRotationX(Math.random() * Math.PI/2);
 		var transformation = new THREE.Matrix4().makeTranslation(Math.random()*10, Math.random()*10, Math.random()*10).makeRotationX(Math.random() * Math.PI);
 		cubeGeometry.applyMatrix(transformation);
@@ -289,9 +299,12 @@ function init() {
 	scene.add( directionalLight );
 	scene.add( ambient );
 	scene.add( pointLight1 );
-	scene.add(SpotLight1.target);
-	scene.add(SpotLight2.target);
-	// scene.add( pointLightHelper );
+	scene.add(pointLight2);
+	scene.add(pointLight3);
+	scene.add(pointLight4);
+	// scene.add(SpotLight1.target);
+	// scene.add(SpotLight2.target);
+	// scene.add( pointLightHelper2 );
 	// scene.add(SpotLight2helper);
 
 	scene.add(cylinder1);
@@ -442,7 +455,11 @@ function update(){
 	// 	w = -w;
 	// }
 	for (var i = 0; i < mesh.length; i++){
-	if(Math.abs(mesh[i].position.y - cylinder1.position.y) < 120 && Math.abs(mesh[i].position.x - cylinder1.position.x) < 60){
+	if((Math.abs(mesh[i].position.y - cylinder1.position.y) < 120 && Math.abs(mesh[i].position.x - cylinder1.position.x) < 60)
+		||(Math.abs(mesh[i].position.y - cylinder2.position.y) < 120 && Math.abs(mesh[i].position.x - cylinder2.position.x) < 60)
+		||(Math.abs(mesh[i].position.y - cylinder3.position.y) < 120 && Math.abs(mesh[i].position.x - cylinder3.position.x) < 60)
+		||(Math.abs(mesh[i].position.y - cylinder4.position.y) < 120 && Math.abs(mesh[i].position.x - cylinder4.position.x) < 60)
+	){
 		mesh[i].material = new THREE.MeshLambertMaterial({color: 0x737f8e});
 	}else{
 		mesh[i].material = new THREE.MeshLambertMaterial({color: 0x9e8684});
