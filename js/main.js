@@ -363,6 +363,7 @@ function init() {
 	renderer.shadowMap.enabled = true;
 	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	renderer.shadowMapSoft = true;
+	renderer.sortObjects = false;
  
 
 container.appendChild( renderer.domElement );
@@ -450,16 +451,16 @@ function animate() {
 }
 
 function render(){
-	if (camera.position.x !== 0){
-		camera.position.x = 0
-	}
-	if (camera.position.y !== 0){
-		camera.position.y = 0
-	}
+	// if (camera.position.x !== 0){
+	// 	camera.position.x = 0
+	// }
+	// if (camera.position.y !== 0){
+	// 	camera.position.y = 0
+	// }
 
-	if (camera.position.z !== 380){
-		camera.position.z = 380
-	}
+	// if (camera.position.z !== 380){
+	// 	camera.position.z = 380
+	// }
 	camera.lookAt( scene.position );
 	renderer.render( scene, camera );
 
