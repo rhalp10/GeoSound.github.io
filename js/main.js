@@ -250,7 +250,9 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
 var note1;
-var slider1 = document.getElementById('slider1');
+var slider1 = document.getElementById("slider1");
+var slider2 = document.getElementById("slider2");
+var slider3 = document.getElementById("slider3");
 
 var synth = new Tone.MonoSynth({
 			"portamento" : 0.01,
@@ -273,7 +275,12 @@ var synth = new Tone.MonoSynth({
 			}
 		}).toMaster();
 
+window.addEventListener( 'load', function(){
+	var loadingPage = document.getElementById("loadingPage");
+	loadingPage.style.display = "none";
+});
 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
 
 setLights();
 init();
@@ -315,15 +322,18 @@ function init() {
 	scene.add(circ2);
 	scene.add(circ3);
 	scene.add(circ4);
-	scene.add(mesh1);
-	scene.add(mesh2);
-	scene.add(mesh3);
-	scene.add(mesh4);
-	scene.add(mesh5);
-	scene.add(mesh6);
-	scene.add(mesh7);
-	scene.add(mesh8);
-	scene.add(mesh9);
+	// scene.add(mesh1);
+	// scene.add(mesh2);
+	// scene.add(mesh3);
+	// scene.add(mesh4);
+	// scene.add(mesh5);
+	// scene.add(mesh6);
+	// scene.add(mesh7);
+	// scene.add(mesh8);
+	// scene.add(mesh9);
+	for (var i = 0; i < mesh.length; i ++){
+		scene.add(mesh[i]);
+	}
 	scene.add(plane1);
 	scene.add(plane2);
 	scene.add(plane3);
@@ -420,10 +430,18 @@ function animate() {
 	for(var i = 0; i < mesh.length; i ++){
 		mesh[i].rotation.x += slider1.value/1500;
 	}
-	// mesh.rotation.x += 10;
+	for (var i = 0; i < mesh.length; i ++){
+		mesh[i].rotation.z += slider2.value/2000;
+	}
 	for (var i = 0; i < mesh.length; i ++){
 		mesh[i].rotation.y += speed[i];
 	}
+
+	// for (var i = 0; i < mesh.length; i ++){
+	// 	mesh[i].scale.set(slider3.value/100, slider3.value/100, slider3.value/100);
+	// }
+
+	console.log(slider3.value);
 	// if(mesh1.position.x > -10 && mesh1.position.x < 100){
   //   mesh1.position.set(0,-10,0);
 	// }
