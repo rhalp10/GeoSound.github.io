@@ -291,7 +291,7 @@ function init() {
 	document.body.appendChild( container );
 
 	//camera
-	camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -500, 1000 );
+	camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 0, 10000 );
 	camera.position.z = 850;
 	// camera.position.x = 180;
 	// camera.position.y = 180;
@@ -350,14 +350,12 @@ function init() {
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.setClearColor(0x20252d);
-	renderer.domElement.style.position = "relative";
 	renderer.shadowMap.enabled = true;
 	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	renderer.shadowMapSoft = true;
 	renderer.sortObjects = false;
  
-
-container.appendChild( renderer.domElement );
+    container.appendChild( renderer.domElement );
 
 
 	var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
